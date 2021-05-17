@@ -1,0 +1,117 @@
+body {
+  margin: 0;
+  font-family: "Black Han Sans", sans-serif;
+  font-family: "Do Hyeon", sans-serif;
+  height: 500vh;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(201, 166, 202);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
+
+.navbar i {
+  align-items: center;
+}
+.navbar p {
+  font-weight: 900;
+}
+.navbar i,
+.navbar p {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar p:hover {
+  background-color: rgb(163, 155, 196);
+  border-radius: 5px;
+  color: white;
+}
+/*------------------------------------------------------*/
+.outline_box {
+  padding: 0% 10%;
+}
+.assginment_title {
+  font-size: 35px;
+}
+.assginment_order,
+.assginment_content_title,
+.assginment_content_law {
+  display: flex;
+  font-size: 23px;
+}
+.assginment_order {
+  width: 40%;
+  height: 40px;
+  justify-content: space-between;
+  padding: 0px 10px;
+  padding-bottom: 2%;
+}
+.assginment_order_box_title {
+  display: flex;
+  align-items: center;
+  width: 100px;
+}
+.assginment_order_box,
+.assginment_order_box_blank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  background-color: rgb(255, 255, 64);
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.assginment_order_box_blank {
+  background-color: white;
+  border: 2px solid black;
+}
+
+.assginment_title,
+.assginment_content {
+  width: 50%;
+  border-radius: 3px;
+  padding: 0px 10px;
+}
+.assginment_title,
+.assginment_content_title {
+  background-color: rgb(163, 155, 196);
+  padding: 0px 10px;
+}
+.assginment_content_title {
+  height: 50px;
+  align-items: center;
+}
+
+.assginment_content_law {
+  background-color: white;
+}
+.assginment_content_title,
+.assginment_content_law {
+  justify-content: space-between;
+}
+.assginment_content_law_one,
+.assginment_content_law_two {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.assginment_content_law_three {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 30px;
+  padding-right: 10px;
+}
