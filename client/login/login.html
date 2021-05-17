@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap"
       rel="stylesheet"
     />
-    <title>Main Page</title>
+    <title>Login</title>
     <script
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
@@ -19,8 +19,29 @@
   </head>
   <body>
     <nav class="navbar">
-      <i class="fas fa-key"></i>
-      <p>LOGIN</p>
-      <i class="fas fa-sign-in-alt"></i>
-      <p>SIGN UP</p>
-    </nav>
+      <p><i class="fas fa-key"></i>
+        <a href="../login/login.html">LOGIN</a></p>
+      <p><i class="fas fa-sign-in-alt"></i>
+        <a href="../join/join.html">Sign Up</a></p>
+        </nav>
+    <div class="login-form">
+        <h1>Login</h1>
+        <div class="container">
+            <div class="main">
+                <div class="content">
+                    <h2>Log In</h2>
+                    <form action="" method="post">
+                       <input type="text" name="name" placeholder="User Name" required autofocus="">
+                       <input type="password" name="pwd" placeholder="User Password" required autofocus="">
+                       <button class="btn" type="submit">Log In</button>
+                    </form>
+                    <p class="account">계정이 없으신가요? <a href="../join/join.html">회원가입</a></p>
+                </div>
+                <div class="form-ing">
+                    <img src="2.png" width=460 height="400">
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
