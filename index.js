@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { getInfo } from "./crawling/getSubject";
 import { getAssignment } from "./crawling/getAssignment";
+import { authRouter } from "./routes/auth"
 dotenv.config();
 
 // db
@@ -26,6 +27,8 @@ app.get('/', (req, res)=>{
     res.send("hello!")
 })
 
+app.use('/auth', authRouter);
+
 app.get('/api/test', (req, res)=>{
     db.query(
         "SELECT name FROM user",
@@ -36,6 +39,23 @@ app.get('/api/test', (req, res)=>{
     )
 })
 
+
+app.get('/assignment/async', (req, res)=>{
+    // const { lms_id, lms_pw } = req.body;
+    getAssignment(process.env.SMART_LMS_ID , process.env.SMART_LMS_PW , async function(datas, gettingError){
+        if(gettingError) return res.json({success : false, gettingError});
+        for(let i=0; i<datas.length; i++){
+            let flag = false;
+            const data = datas[i]
+            db.query(
+                "INSERT INTO `assignment` (ssubjectName, detail, deadline) VALUES (?, ?, CAST(? AS DATE));",
+                [data.subjectName, data.content, data.date],
+            ).on('error',(err)=>{
+                console.log("err!")
+            })
+        }
+    })
+})
 
 
 

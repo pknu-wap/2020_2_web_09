@@ -4,9 +4,9 @@ import dotenv from"dotenv";
 dotenv.config();
 
 const detailPath = `#shedule_list_form > div > .schedule_view_detail_box`;
-const titlePath = "#shedule_list_form > div > .schedule_view_list_box";
+const contentPath = "#shedule_list_form > div > .schedule_view_list_box";
 const dateRe = /\d+\.\d+.\d+/;
-const titleRe = /[a-zA-Z가-힣]+/;
+const subjectNameRe = /[a-zA-Z가-힣]+/;
 
 const getAssignment = async (pknu_id, pknu_pw, cb) => {
   const data = [];
@@ -40,19 +40,20 @@ const getAssignment = async (pknu_id, pknu_pw, cb) => {
   );
   await page.click('div[id="login_btn"]');
 
-  await page.waitFor(1000);
-
   if (page.url() === "https://lms.pknu.ac.kr/ilos/main/member/login_form.acl") {
     console.log("실패");
   } else {
     await page.goto("https://lms.pknu.ac.kr/ilos/main/main_form.acl",
     {waitUntil: 'domcontentloaded'}
     );
-    await page.click('div[class="site_button"]').catch((err) => {});
+    page.waitFor(1000);
+    await page.click('div[class="x"]').catch((err) => {
+      console.log(err+"site button")
+    });
     await page
       .click('input[id="show_schedule_list"]')
       .catch((err) => {
-        console.log(err+"err")
+        console.log(err+"schedule button")
       })
       .finally(() => {
         setTimeout(async () => {
@@ -66,12 +67,12 @@ const getAssignment = async (pknu_id, pknu_pw, cb) => {
           let box = new Object();
           for (let i = 1; i <= number; i++) {
             // console.log(i);
-            const titleDom = await page.$(
-              `${titlePath}:nth-child(${i}) > div:nth-child(2) > span`
+            const contentDom = await page.$(
+              `${contentPath}:nth-child(${i}) > div:nth-child(2) > span`
             );
-            if (titleDom != null) {
-              const title = await evaluate(titleDom);
-              box.title = title;
+            if (contentDom != null) {
+              const content = await evaluate(contentDom);
+              box.content = content;
               continue;
             }
 
@@ -96,8 +97,8 @@ const getAssignment = async (pknu_id, pknu_pw, cb) => {
               const state = await evaluate(stateDom);
               if (subjectName != null) {
                 if (state && state.split(":")[1].trim() == "제출") continue;
-                box.date = dateRe.exec(date)[0];
-                box.subjectName = titleRe.exec(subjectName)[0];
+                box.date = dateRe.exec(date)[0].replace(/\./gi, '-');
+                box.subjectName = subjectNameRe.exec(subjectName)[0];
                 data.push(box);
               }
             }
