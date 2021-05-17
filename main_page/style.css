@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: "Black Han Sans", sans-serif;
+  font-family: "Do Hyeon", sans-serif;
+  height: 500vh;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(201, 166, 202);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar i {
+  align-items: center;
+}
+.navbar p {
+  font-weight: 900;
+}
+.navbar i,
+.navbar p {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar p:hover {
+  background-color: rgb(163, 155, 196);
+  border-radius: 5px;
+  color: white;
+}
+.content {
+  display: flex;
+}
+.left {
+  width: 60%;
+  height: 600px;
+  margin: 10px;
+}
+.left > div {
+  padding-left: 10px;
+}
+
+.average_score {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(228, 205, 228);
+  border-radius: 20px;
+}
+
+.left_score {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(228, 205, 228);
+  border-radius: 20px;
+}
+.assignment {
+  width: 40%;
+  height: 600px;
+  margin: 10px;
+  background-color: rgb(228, 205, 228);
+  border-radius: 20px;
+  margin-top: 30px;
+}
+.assignment_top {
+  display: flex;
+  width: 100%;
+  height: 80px;
+}
+.assignment i {
+  font-size: 70px;
+  padding-left: 10px;
+  color: rgb(70, 77, 170);
+}
+.assignment > div {
+  padding-bottom: 30px;
+  padding-left: 10px;
+}
+.content h1 {
+  padding-left: 20px;
+  padding-top: 20px;
+}
