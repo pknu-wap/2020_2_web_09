@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(201, 166, 202);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar i {
+  align-items: center;
+}
+.navbar p {
+  font-weight: 900;
+}
+.navbar i,
+.navbar p {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar p:hover {
+  background-color: rgb(163, 155, 196);
+  border-radius: 5px;
+  color: white;
+}
