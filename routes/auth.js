@@ -1,8 +1,19 @@
 import express from "express";
 import axios from "axios";
 import qs from "qs"
+import path  from "path";
 
 const authRouter = express.Router();
+
+authRouter.get('/login', (req, res)=>{
+    res.sendFile(path.resolve(__dirname,'../client/login.html'));
+})
+
+
+authRouter.get('/join', (req, res)=>{
+    res.sendFile(path.resolve(__dirname,'../client/join.html'));
+})
+
 
 //https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}
 
@@ -16,7 +27,7 @@ authRouter.get('/redirect/kakao', (req, res)=>{
     const data =  {
         grant_type: "authorization_code",
         client_id: process.env.K_RESTAPI_KEY,
-        redirect_uri: "http://localhost:4000/auth/redirect/kakao",
+        redirect_uri: "http://localhost:1000/auth/redirect/kakao/",
         code: code,
     }
     // 헤더
@@ -47,16 +58,14 @@ authRouter.get('/redirect/kakao', (req, res)=>{
             console.log(userInfo.data)
         } catch (error) {
             console.log(error, 'token-login-err')
-            return res.redirect('/login');
+            return res.redirect('/auth/login');
         }
 
     })
     .catch(err=>{
         console.log(err, 'err')
-        return res.redirect('/login');
+        return res.redirect('/auth/login');
     })
-
-    return res.redirect('/')
 })
 
 

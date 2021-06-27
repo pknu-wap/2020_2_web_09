@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../login/login.css" />
+    <link rel="stylesheet" href="/css/login.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap"
@@ -15,7 +15,7 @@
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../login/login.js" defer></script>
+    <script src="/js/login.js" defer></script>
   </head>
   <body>
     <nav class="navbar">
@@ -36,9 +36,14 @@
                        <button class="btn" type="submit">Log In</button>
                     </form>
                     <p class="account">계정이 없으신가요? <a href="../join/join.html">회원가입</a></p>
-                </div>
+                    <button>
+                      <a href="https://kauth.kakao.com/oauth/authorize?client_id=d29866d924f4b8ea896c0a1eff9157a1&redirect_uri=http://localhost:1000/auth/redirect/kakao/&response_type=code">
+                        카카오로그인
+                      </a>
+                    </button>
+                  </div>
                 <div class="form-ing">
-                    <img src="2.png" width=460 height="400">
+                    <img src="/image/2.png" width=460 height="400">
                 </div>
             </div>
         </div>
