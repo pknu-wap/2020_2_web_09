@@ -8,7 +8,7 @@ const titleRe = /[a-zA-Z가-힣]+/;
 const getInfo = async (pknu_id, pknu_pw, cb) => {
   const data = [];
   const browser = await puppeteer.launch({
-    // headless : false
+    headless : false
   });
 
   const page = await browser.newPage();
@@ -69,4 +69,7 @@ const getInfo = async (pknu_id, pknu_pw, cb) => {
   return cb(data, null);
 };
 
+
+
 export { getInfo };
+

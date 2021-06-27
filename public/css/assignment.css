@@ -2,7 +2,8 @@ body {
   margin: 0;
   font-family: "Black Han Sans", sans-serif;
   font-family: "Do Hyeon", sans-serif;
-  height: 500vh;
+  height: 100%;
+  width: 100%;
 }
 a {
   text-decoration: none;
@@ -43,15 +44,17 @@ a {
 .assginment_title {
   font-size: 35px;
 }
-.assginment_order,
+.assginment_order{
+  width: 100%;
+  display: flex;
+}
+
 .assginment_content_title,
-.assginment_content_law {
+.assginment_content_raw {
   display: flex;
   font-size: 23px;
 }
 .assginment_order {
-  width: 40%;
-  height: 40px;
   justify-content: space-between;
   padding: 0px 10px;
   padding-bottom: 2%;
@@ -59,7 +62,6 @@ a {
 .assginment_order_box_title {
   display: flex;
   align-items: center;
-  width: 100px;
 }
 .assginment_order_box,
 .assginment_order_box_blank {
@@ -78,7 +80,6 @@ a {
 
 .assginment_title,
 .assginment_content {
-  width: 50%;
   border-radius: 3px;
   padding: 0px 10px;
 }
@@ -92,21 +93,21 @@ a {
   align-items: center;
 }
 
-.assginment_content_law {
+.assginment_content_raw {
   background-color: white;
 }
 .assginment_content_title,
-.assginment_content_law {
+.assginment_content_raw {
   justify-content: space-between;
 }
-.assginment_content_law_one,
-.assginment_content_law_two {
+.assginment_content_raw_one,
+.assginment_content_raw_two {
   width: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.assginment_content_law_three {
+.assginment_content_raw_three {
   width: 30%;
   display: flex;
   flex-direction: column;
