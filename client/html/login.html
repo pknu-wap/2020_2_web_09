@@ -20,9 +20,9 @@
   <body>
     <nav class="navbar">
       <p><i class="fas fa-key"></i>
-        <a href="../login/login.html">LOGIN</a></p>
+        <a href="/auth/login">LOGIN</a></p>
       <p><i class="fas fa-sign-in-alt"></i>
-        <a href="../join/join.html">Sign Up</a></p>
+        <a href="/auth/join">Sign Up</a></p>
         </nav>
     <div class="login-form">
         <h1>Login</h1>
@@ -30,12 +30,12 @@
             <div class="main">
                 <div class="content">
                     <h2>Log In</h2>
-                    <form action="" method="post">
-                       <input type="text" name="name" placeholder="User Name" required autofocus="">
+                    <form action="/auth/login" method="post">
+                       <input type="text" name="id" placeholder="User id" required autofocus="">
                        <input type="password" name="pwd" placeholder="User Password" required autofocus="">
                        <button class="btn" type="submit">Log In</button>
                     </form>
-                    <p class="account">계정이 없으신가요? <a href="../join/join.html">회원가입</a></p>
+                    <p class="account">계정이 없으신가요? <a href="/auth/join">회원가입</a></p>
                     <button>
                       <a href="https://kauth.kakao.com/oauth/authorize?client_id=d29866d924f4b8ea896c0a1eff9157a1&redirect_uri=http://localhost:1000/auth/redirect/kakao/&response_type=code">
                         카카오로그인

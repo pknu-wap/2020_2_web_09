@@ -8,7 +8,7 @@ import { getAssignment } from "../crawling/getAssignment";
 const assignRouter = express.Router();
 
 assignRouter.get('/page', (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../client/assignment.html'));
+    res.sendFile(path.resolve(__dirname,'../client/html/assignment.html'));
 })
 
 
@@ -35,7 +35,7 @@ assignRouter.post('/async', (req, res)=>{
 
 
 assignRouter.get('/complete', (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../client/assignment.html'));
+    res.sendFile(path.resolve(__dirname,'../client/html/assignment.html'));
 })
 
 
