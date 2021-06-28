@@ -15,7 +15,6 @@ const years = ['1-1', '1-2', '2-1', '2-2', '3-1', '3-2', '4-1', '4-2', '5-1', '5
 <p>그외</p> */}
 
 const getInfoElement = (data) =>{
-    console.log(data)
     const { id, subjectTitle, grade, score, field, year} = data
     let check_btn = 'far fa-check-square';
 
@@ -67,13 +66,12 @@ const paintInfos = ()=>{
     })
     .then((res)=>(res.json()))
     .then(res=>{
+        console.log(res)
         if(res.success){
             const values = res.values;
             Array.from(values, value=>{
                 paintInfo(value)
             })
-        }else{
-            console.log(res)
         }
     })
 }
@@ -89,7 +87,10 @@ addBtn.addEventListener("click", e=>{
 
     const field = document.querySelector('.select_field').value;
 
+    
     if(!year|!subjectTitle | !grade | !score | !field) return;
+
+    // console.log(year, subjectTitle, grade, score, field)
 
     fetch('/grade/save', {
         method : 'POST',

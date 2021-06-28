@@ -57,37 +57,50 @@ gradeRouter.get("/get/all", onlyPrivate, (req, res)=>{
 gradeRouter.post("/save", onlyPrivate, (req, res)=>{
     const userId = req.session.user['id'];
     if(!req.body) return res.json({success:false, err : 'body is null'});
+    const data = req.body;
+    console.log(data)
+    const { year, subjectTitle, grade, score, field } = data;
 
-    let majorHap = 0;
-    let hap = grade * score;
-    let cnt = 0;
+    let majorAverage = 0;
+    if(field == 'major') majorAverage = score*grade;
 
-    const { field , grade, score } = req.body;
-    if(field == 'major'){
-        majorHap = hap
-    }
 
-    // db.query(`UPDATE averageGrade SET grade_sum = grade_sum + ${grade} WHERE userId = ${userId}`, 
-    // (err, result)=>{
-    //     if(err) console.log(err)
-    //     console.log(result)
-    // })
-
-    db.query(`INSERT INTO averageGrade (all, major, points, grade_sum, userId)
-    VALUSES (?, ?, ?, ?) 
-    `, [hap, majorHap, grade, userId],
-    (err, result)=>{
+    db.query(
+    `INSERT INTO averageGrade 
+        (allGradeSum, majorGradeSum, gradeSum, userId) 
+    VALUES 
+        (?, ?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+        allGradeSum = allGradeSum + ?,
+        majorGradeSum = majorGradeSum + ?,
+        gradeSum = majorGradeSum + ?`
+    ,
+    [
+      score*grade, majorAverage, parseInt(grade), userId,
+      score*grade, majorAverage, parseInt(grade)
+    ]
+    ,(err, result, fields)=>{
+        console.error(err)
         console.log(result)
+        console.log(fields)
     })
 
-    // saveData(req.body, userId)
-    // .then(value=>{
-    //     value.success = true
-    //     return res.json(value)
-    // })
-    // .catch(err=>{
-    //     return res.json({success:false, err})
-    // })
+    db.query(
+        `INSERT INTO grade
+            (subjectTitle, grade, score, userId, field, year)
+        VALUES
+            (?, ?, ?, ?, ?, ?)
+        `,
+        [subjectTitle, grade, score, userId, field, year],
+        (err ,result)=>{
+            if(!err){
+                data.id = result.insertId;
+                data.success = true;
+                return res.json(data);
+            }
+            return res.json({success : false})
+        }
+    )
 })
   
 export { gradeRouter };
