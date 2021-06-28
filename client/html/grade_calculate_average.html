@@ -18,41 +18,9 @@
     <script src="/js/grade_average.js" defer></script>
   </head> 
   <body>
-    <nav class="navbar">
-      <a href="/auth/logout">
-        <i class="fas fa-key">
-          <p>LOGOUT</p>
-        </i>
-      </a>
-      <a href="/auth/login">
-        <i class="fas fa-key">
-          <p>LOGIN</p>
-        </i>
-      </a>
-      <a href="/auth/join">
-        <i class="fas fa-sign-in-alt">
-          <p>SIGN UP</p>
-        </i>
-      </a>
-      <a href="/grade/rest">
-        <p>
-          <i class="fas fa-school"></i>
-          잔여학점
-        </p>
-      </a>
-      <a href="/grade/average">
-        <p>
-          <i class="fas fa-book"></i>
-          평균학점
-        </p>
-      </a>
-      <a href="/assign/page">
-        <p>
-          <i class="far fa-calendar-alt"></i>
-          과제
-        </p>
-      </a>
-    </nav>
+    <div class="navBar_contatiner">
+      
+    </div>
 
     <div class="average_grade_contatiner">
       <div class="outline_box">
@@ -74,7 +42,7 @@
             <label class="credits" ></label>
           </div>
 
-          <div>
+          <div style="display: none;">
             <label>합 : </label>
             <label class="allScoreSum" ></label>
           </div>
@@ -139,36 +107,14 @@
         </div>
 
         <div class="assginment_content_contatiner">
-<!-- 
-          <div class="assginment_content_law">
-            <div class="assginment_content_law_year"><p>1-1</p></div>
-            <div class="assginment_content_law_title"><p>문제해결기법</p></div>
-            <div class="assginment_content_law_point"><p>3</p></div>
-            <div class="assginment_content_law_grade">
-              <p>A+</p>
-            </div>
-            <div class="assginment_content_law_major">
-              <i class="fas fa-check-square"></i>
-            </div>
-          </div>
-          
-          <div class="assginment_content_law">
-            <div class="assginment_content_law_year"><p>1-1</p></div>
-            <div class="assginment_content_law_title"><p>문제해결기법</p></div>
-            <div class="assginment_content_law_point"><p>3</p></div>
-            <div class="assginment_content_law_grade">
-              <p>A+</p>
-            </div>
-            <div class="assginment_content_law_major">
-              <i class="fas fa-check-square"></i>
-            </div>
-          </div> -->
+
         </div>
         
       </div>
 
       
     </div>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/bar.js"></script>
   </body>
 </html>

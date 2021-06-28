@@ -17,49 +17,16 @@
     ></script>
   </head>
   <body>
-    <nav class="navbar">
-      <a href="/auth/logout">
-        <i class="fas fa-key">
-          <p>LOGOUT</p>
-        </i>
-      </a>
-      <a href="/auth/login">
-        <i class="fas fa-key">
-          <p>LOGIN</p>
-        </i>
-      </a>
-      <a href="/auth/join">
-        <i class="fas fa-sign-in-alt">
-          <p>SIGN UP</p>
-        </i>
-      </a>
-      <a href="/grade/rest">
-        <p>
-          <i class="fas fa-school"></i>
-          잔여학점
-        </p>
-      </a>
-      <a href="/grade/average">
-        <p>
-          <i class="fas fa-book"></i>
-          평균학점
-        </p>
-      </a>
-      <a href="/assign/page">
-        <p>
-          <i class="far fa-calendar-alt"></i>
-          과제
-        </p>
-      </a>
-    </nav>
-    
+    <div class="navBar_contatiner">
+      
+    </div>
     <div class="outline_box">
       <div class="assginment_title">
         <p>과제</p>
       </div>
       <div class="assginment_order">
         <div class="assginment_order_box"><p>최신순</p></div>
-        <div class="assginment_order_box_blank"><p>과목별</p></div>
+        <div class="assginment_order_box_blank"><p>입력순</p></div>
       </div>
 
       <div class="assign_get_box">
@@ -120,5 +87,7 @@
     </div>
 
     <script src="/js/assignment.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/bar.js"></script>
   </body>
 </html>
