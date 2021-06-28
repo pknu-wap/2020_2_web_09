@@ -56,6 +56,14 @@ app.get('/', isAuth, (req, res)=>{
     res.sendFile(path.join(__dirname+'/client/html/main.html'));
 }) 
 
+app.get('/isauth', (req, res)=>{
+    const user = req.session.user;
+    if(user){
+        return res.json({ logged : true, success : true})
+    }
+    return res.json({ logged : false, success : true})
+})
+
 app.use('/auth', authRouter);
   
 app.use('/assign', assignRouter); 

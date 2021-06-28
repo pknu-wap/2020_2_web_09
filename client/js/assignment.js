@@ -1,7 +1,8 @@
 const assignAsyncBtn = document.querySelector('.async_assign_btn');
 const assignContent = document.querySelector('.assginment_content');
 const assignAddBtn = document.querySelector('.assign_add_btn');
-
+const recentBtn = document.querySelector('.assginment_order_box');
+const inputBtn = document.querySelector('.assginment_order_box_blank');
 
 const getAssignElement = (data) =>{
     const { content , date, subjectName , id} = data;
@@ -154,5 +155,13 @@ assignAddBtn.addEventListener("click", e=>{
     })
 })
 
+recentBtn.addEventListener('click', (e)=>{    
+    paintAssigns('recent')
+})
 
-paintAssigns('basic')
+
+inputBtn.addEventListener('click', (e)=>{    
+    paintAssigns()
+})
+
+paintAssigns()

@@ -21,8 +21,9 @@ exports.login = async(req, res) => {
 		}
 
 		db.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-
-			if(!results || !(await bcrypt.compare(password, results[0].password))) {
+			
+			if(results.length == 0 || !(await bcrypt.compare(password, results[0].password))) {
+				console.log('401 Email or Password is incorrect')
 				return res.status(401).json({
 					message : 'Email or Password is incorrect '
 				});
@@ -30,7 +31,7 @@ exports.login = async(req, res) => {
 
 			const id = results[0].id;
 			const user = { id , email, password};
-
+			
 			const token = jwt.sign({id}, process.env.JWT_SECRET, {
 				expiresIn : process.env.JWT_EXPIRES_IN
 			})

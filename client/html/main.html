@@ -15,65 +15,29 @@
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/main.js" defer></script>
   </head>
   <body>
-    <nav class="navbar">
-      <p><i class="fas fa-key"></i>
-        <a href="login.html">LOGIN</a></p>
-      <p><i class="fas fa-sign-in-alt"></i>
-        <a href="../join/join.html">Sign Up</a></p>
-      <p>
-        <i class="fas fa-key"></i>
-        <a href="../login/login.html">LOGOUT</a>
-      </p>
-      <a href="/grade/rest">
-        <p>
-          <i class="fas fa-school"></i>
-          잔여학점
-        </p>
-      </a>
-      <a href="/grade/average">
-        <p>
-          <i class="fas fa-book"></i>
-          평균학점
-        </p>
-      </a>
-      <a href="/assign/page">
-        <p>
-          <i class="far fa-calendar-alt"></i>
-          과제
-        </p>
-      </a>
-    </nav>
+    <div class="navBar_contatiner">
+      
+    </div>
 
     <div class="content">
       <div class="left">
         <div class="average_score">
-          <h1>평균 학점 계산</h1>
-          <p>전체학기: 3.2/4.5</p>
-          <p>1학년 1학기:</p>
-          <p>1학년 2학기:</p>
-        </div>
-        <div class="left_score">
-          <h1>잔여 학점 계산</h1>
-          <p>취득 학점: 96/132</p>
-          <p>전공 필수</p>
-          <p>교양</p>
-          <p>선택</p>
         </div>
       </div>
+
       <div class="assignment">
-        <div class="assignment_top">
-          <h1>과제</h1>
-          <i class="fas fa-school"></i>
+        <a href="/assign/page">
+          <div class="assignment_top">
+            <h1>과제</h1>
+            <i class="fas fa-school"></i>
+          </div>
+        </a>
+        
+        <div class="assign_container">
         </div>
-        <div class="one">
-          <p>컴퓨터 구조(903)</p>
-          <p>2021.04.19</p>
-          <p>1장 문제 풀이</p>
-        </div>
-        <div>
+        <!-- <div>
           <p>교육 심리(301)</p>
           <p>2021.04.24</p>
           <p>5주차 인지 발달 보고서</p>
@@ -81,9 +45,13 @@
         <div>
           <p>디지털 신호 처리(802)</p>
           <p>2021.05.01</p>
-        </div>
+        </div> -->
       </div>
     </div>
     </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/bar.js"></script>
   </body>
 </html>
