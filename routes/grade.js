@@ -54,6 +54,43 @@ gradeRouter.get("/get/all", onlyPrivate, (req, res)=>{
     })
 })
 
+gradeRouter.get("/get/scores", onlyPrivate, (req, res)=>{
+    const userId = req.session.user['id'];
+    db.query('SELECT * FROM averageGrade WHERE userId=?', [userId], (err, result)=>{
+        if(err){
+            return res.json({success : false, err })
+        }
+        return res.json({success : true, values : result[0]})
+    })
+})
+
+gradeRouter.post("/remove", onlyPrivate, (req, res)=>{
+    const userId = req.session.user['id'];
+    let { id, score , grade } = req.body;
+
+    score = parseFloat(score)
+    grade = parseInt(grade)
+    const point = score * grade;
+
+    db.query('DELETE FROM grade WHERE id=? and userId=?', [id, userId], (err, result, fields)=>{
+        if(err){
+            console.log(err)
+            return res.json({success : false, err })
+        }
+        return res.json({success : true})
+    })
+
+    db.query(`
+        UPDATE averageGrade 
+        SET allGradeSum = allGradeSum - ? , allScoreSum = allScoreSum - ?
+        WHERE userId = ?`, 
+        [grade, point, userId],
+        (err, res)=>{
+            console.log(err, res)
+        }
+    )
+}) 
+
 gradeRouter.post("/save", onlyPrivate, (req, res)=>{
     const userId = req.session.user['id'];
     if(!req.body) return res.json({success:false, err : 'body is null'});
@@ -67,13 +104,13 @@ gradeRouter.post("/save", onlyPrivate, (req, res)=>{
 
     db.query(
     `INSERT INTO averageGrade 
-        (allGradeSum, majorGradeSum, gradeSum, userId) 
+        (allScoreSum, majorScoreSum, allGradeSum, userId) 
     VALUES 
         (?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
-        allGradeSum = allGradeSum + ?,
-        majorGradeSum = majorGradeSum + ?,
-        gradeSum = majorGradeSum + ?`
+        allScoreSum = allScoreSum + ?,
+        majorScoreSum = majorScoreSum + ?,
+        allGradeSum = allGradeSum + ?`
     ,
     [
       score*grade, majorAverage, parseInt(grade), userId,
