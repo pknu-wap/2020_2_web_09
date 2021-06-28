@@ -36,9 +36,16 @@ assignRouter.get('/page', onlyPrivate, (req, res)=>{
 
 assignRouter.get('/get/:order', onlyPrivate, (req, res)=>{
     const { id } = req.session.user;
-    const order = req.params.order | '';
-    console.log(req.session)
-    db.query('SELECT * FROM assignment WHERE userId = ?', [id], (err, assigns)=>{
+    const order = req.params.order;
+
+    let queryStr = "SELECT * FROM assignment WHERE userId = ?";
+    if(order == 'recent'){
+        queryStr = 'SELECT * FROM assignment WHERE userId = ? ORDER BY deadline ASC'
+    }else if(order == 'limit'){
+        queryStr = 'SELECT * FROM assignment WHERE userId = ? ORDER BY deadline ASC LIMIT 4'
+    }
+
+    db.query(queryStr, [id], (err, assigns)=>{
         if(err){
             return res.send('404')
         }

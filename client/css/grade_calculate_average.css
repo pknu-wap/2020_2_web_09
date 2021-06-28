@@ -105,8 +105,8 @@ a {
   margin: 5px 0px;
 }
 
-.assginment_order_box :hover{
-  transform: scale(1.1);
+.assginment_order_box:hover {
+  transform: scale(1.02);
   cursor: pointer;
 }
 

@@ -44,15 +44,37 @@ gradeRouter.get("/average", (req, res)=>{
 })
 
 
-gradeRouter.get("/get/all", onlyPrivate, (req, res)=>{
+
+gradeRouter.get("/get/by/:select", onlyPrivate, (req, res)=>{
+    const select = req.params.select;
     const userId = req.session.user['id'];
-    db.query('SELECT * FROM grade WHERE userId=?', [userId], (err, result)=>{
-        if(err){
-            return res.json({success : false, err })
-        }
-        return res.json({success : true, values : result})
-    })
+
+    if(select === 'all'){
+        db.query('SELECT * FROM grade WHERE userId=?', [userId], (err, result)=>{
+            if(err){
+                return res.json({success : false, err })
+            }
+            return res.json({success : true, values : result})
+        })
+    }else if(select === 'main'){
+        db.query('SELECT * FROM grade WHERE userId=? LIMIT 5', [userId], (err, result)=>{
+            if(err){
+                return res.json({success : false, err })
+            }
+            return res.json({success : true, values : result})
+        })
+    }else{
+        db.query('SELECT * FROM grade WHERE userId=? and year = ?',
+        [userId, select],
+        (err, result)=>{
+           if(err){
+               return res.json({success : false, err })
+           }
+           return res.json({success : true, values : result})
+       })
+    }
 })
+
 
 gradeRouter.get("/get/scores", onlyPrivate, (req, res)=>{
     const userId = req.session.user['id'];

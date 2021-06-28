@@ -114,8 +114,10 @@ const paintInfo = (data) =>{
 
 
 
-const paintInfos = ()=>{
-    fetch('/grade/get/all', {
+const paintInfos = (query)=>{
+    subjectContent.innerHTML = "";
+
+    fetch(query, {
         method : 'GET',
         mode: 'cors',  
         credentials: 'same-origin',  
@@ -154,6 +156,7 @@ const getScore = ()=>{
             const { allScoreSum, allGradeSum } = value;
             const average = (allScoreSum / allGradeSum).toFixed(3);
 
+            console.log( allScoreSum, allGradeSum, average)
             allAverageScoreE.innerHTML = average;
             allGradeSumE.innerHTML = parseInt(allGradeSum);
             allScoreSumE.innerHTML = allScoreSum;
@@ -233,7 +236,7 @@ const init = () => {
     const years_element = document.querySelectorAll('.assginment_order_box');
     Array.from(years_element,(elem, index)=>{
         elem.addEventListener("click", (e)=>{
-            console.log(elem.id)
+            paintInfos(`/grade/get/by/${elem.id}`);
         })
     })
 }
@@ -241,5 +244,5 @@ const init = () => {
 
 
 init();
-paintInfos();
+paintInfos('/grade/get/by/all');
 getScore();
