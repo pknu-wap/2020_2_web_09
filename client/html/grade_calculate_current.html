@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="grade_calculate_current.css" />
+    <link rel="stylesheet" href="/css/grade_calculate_current.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap"
@@ -15,13 +15,43 @@
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/grade_rest.js" defer></script>
   </head>
   <body>
     <nav class="navbar">
-      <i class="fas fa-key"></i>
-      <p>LOGIN</p>
-      <i class="fas fa-sign-in-alt"></i>
-      <p>SIGN UP</p>
+      <a href="/auth/logout">
+        <i class="fas fa-key">
+          <p>LOGOUT</p>
+        </i>
+      </a>
+      <a href="/auth/login">
+        <i class="fas fa-key">
+          <p>LOGIN</p>
+        </i>
+      </a>
+      <a href="/auth/join">
+        <i class="fas fa-sign-in-alt">
+          <p>SIGN UP</p>
+        </i>
+      </a>
+      <a href="/grade/rest">
+        <p>
+          <i class="fas fa-school"></i>
+          잔여학점
+        </p>
+      </a>
+      <a href="/grade/average">
+        <p>
+          <i class="fas fa-book"></i>
+          평균학점
+        </p>
+      </a>
+      <a href="/assign/page">
+        <p>
+          <i class="far fa-calendar-alt"></i>
+          과제
+        </p>
+      </a>
     </nav>
 
     <div class="outline_box">

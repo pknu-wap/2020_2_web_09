@@ -7,33 +7,60 @@ import { getInfo } from "./crawling/getSubject";
 import { getAssignment } from "./crawling/getAssignment";
 import { authRouter } from "./routes/auth"
 import { assignRouter } from "./routes/assignment";
+import { gradeRouter } from "./routes/grade";
+import cookieParser from "cookie-parser";
+import { decodeJwt, isAuth } from "./utils/middleware";
 
-dotenv.config();
+import session from "express-session";
+const MySQLStore = require('express-mysql-session')(session);     
+const options = {
+    host: "wapdb.chx45as4kgwe.ap-northeast-2.rds.amazonaws.com",
+    user: "user", 
+    password: process.env.DB_PASSWORD,
+    port: "3306",
+    database: "pknu"
+};
 
+const sessionStore = new MySQLStore(options);
 
 const app = express();
+
+// app.use(
+//     session({
+//         key : 'key',
+//         secret : 'secret',
+//         resave : false,
+//         store : sessionStore,
+//         saveUninitialized: false,
+//     })
+// ) 
+
+app.use(
+    session({
+      key: "session_cookie_name",
+      secret: "session_cookie_secret",
+      store: sessionStore,
+      resave: false,
+      saveUninitialized: false,
+    })
+);
+
 app.set('view engine', 'pug'); 
 app.use(express.static(path.join(__dirname , 'client')))
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(cookieParser())
 
-app.get('/', (req, res)=>{
-    res.send("hello!")
-})
+
+app.get('/', isAuth, (req, res)=>{
+    res.sendFile(path.join(__dirname+'/client/html/main.html'));
+}) 
 
 app.use('/auth', authRouter);
+  
+app.use('/assign', assignRouter); 
 
-app.use('/assign', assignRouter);
-
-app.get('/api/test', (req, res)=>{
-    db.query(
-        "SELECT name FROM user",
-        (err, result) =>{
-            if(err) return res.send("ERROR")
-            res.send(result)
-        }
-    )
-})
+app.use('/grade', gradeRouter); 
 
 
 

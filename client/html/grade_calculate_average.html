@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="grade_calculate_average.css" />
+    <link rel="stylesheet" href="/css/grade_calculate_average.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap"
@@ -15,91 +15,154 @@
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
     ></script>
-  </head>
+    <script src="/js/grade_average.js" defer></script>
+  </head> 
   <body>
     <nav class="navbar">
-      <i class="fas fa-key"></i>
-      <p>LOGIN</p>
-      <i class="fas fa-sign-in-alt"></i>
-      <p>SIGN UP</p>
+      <a href="/auth/logout">
+        <i class="fas fa-key">
+          <p>LOGOUT</p>
+        </i>
+      </a>
+      <a href="/auth/login">
+        <i class="fas fa-key">
+          <p>LOGIN</p>
+        </i>
+      </a>
+      <a href="/auth/join">
+        <i class="fas fa-sign-in-alt">
+          <p>SIGN UP</p>
+        </i>
+      </a>
+      <a href="/grade/rest">
+        <p>
+          <i class="fas fa-school"></i>
+          잔여학점
+        </p>
+      </a>
+      <a href="/grade/average">
+        <p>
+          <i class="fas fa-book"></i>
+          평균학점
+        </p>
+      </a>
+      <a href="/assign/page">
+        <p>
+          <i class="far fa-calendar-alt"></i>
+          과제
+        </p>
+      </a>
     </nav>
 
-    <div class="outline_box">
-      <div class="assginment_title">
-        <p>평균 학점 계산</p>
-      </div>
-      <div class="assginment_order">
-        <div class="assginment_order_box_title"><p>학기</p></div>
+    <div class="average_grade_contatiner">
+      <div class="outline_box">
+        <div class="assginment_title">
+          <p>평균 학점 계산</p>
+        </div>
+
+        <div class="average_score_board">
+          <div>
+            <label>전체평점 : </label>
+            <label class="grade_point">  </label>
+          </div>
+          <div>
+            <label>전공평점 : </label>
+            <label class="major_grade_point">  </label>
+          </div>
+          <div>
+            <label>취득학점 : </label>
+            <label class="credits" >  </label>
+          </div>
+        </div>
+
         <div>
-          <div class="assginment_order_box"><p>1 - 1</p></div>
-          <div class="assginment_order_box"><p>1 - 2</p></div>
+          <div>
+            <div class="assginment_order"></div>
+          </div>
         </div>
-        <div>
-          <div class="assginment_order_box"><p>2 - 1</p></div>
-          <div class="assginment_order_box"><p>2 - 2</p></div>
+
+        <!-- 입력폼 -->
+        <div class="grade_form_container">
+          <div action="/" method="GET" class="grade_add_form">
+            <div>
+              <label>학기</label>
+              <select class="select_year">
+              </select>
+            </div>
+            <div>
+              <label>과목명</label>
+              <input class="grade_add_title" required>
+            </div>
+            <div>
+              <label>학점</label>
+              <input class="grade_add_grade" required>
+            </div>
+            <div class="custom-select">
+              <label>성적</label>
+              <select class="select_score">
+              </select>
+            </div>
+            <div class="custom-select">
+              <label>분야</label>
+              <select class="select_field">
+                <option value='major'>전공</option>
+                <option value='culture'>교양</option>
+                <option value='free'>자유선택</option>
+                <option value='other'>그외</option>
+              </select>
+            </div>
+            <button class="grade_add_btn">추가</button>
+          </div>
+          
         </div>
-        <div>
-          <div class="assginment_order_box"><p>3 - 1</p></div>
-          <div class="assginment_order_box"><p>3 - 2</p></div>
+
+        <div class="assginment_content">
+          <div class="assginment_content_title_title">
+            <p>성적 입력</p>
+          </div>
         </div>
-        <div>
-          <div class="assginment_order_box"><p>4 - 1</p></div>
-          <div class="assginment_order_box"><p>4 - 2</p></div>
-        </div>
-      </div>
-      <div class="assginment_content">
-        <div class="assginment_content_title_title">
-          <p>성적 입력</p>
-        </div>
+
+
+                  
         <div class="assginment_content_title">
-          <p class="assginment_content_title_first">과목명</p>
+          <p>학기</p>
+          <p>과목명</p>
           <p>학점</p>
           <p>성적</p>
           <p>전공</p>
         </div>
-        <div class="assginment_content_law">
-          <div class="assginment_content_law_title"><p>문제해결기법</p></div>
-          <div class="assginment_content_law_point"><p>3</p></div>
-          <div class="assginment_content_law_grade">
-            <p>A+</p>
+
+        <div class="assginment_content_contatiner">
+<!-- 
+          <div class="assginment_content_law">
+            <div class="assginment_content_law_year"><p>1-1</p></div>
+            <div class="assginment_content_law_title"><p>문제해결기법</p></div>
+            <div class="assginment_content_law_point"><p>3</p></div>
+            <div class="assginment_content_law_grade">
+              <p>A+</p>
+            </div>
+            <div class="assginment_content_law_major">
+              <i class="fas fa-check-square"></i>
+            </div>
           </div>
-          <div class="assginment_content_law_major">
-            <i class="fas fa-check-square"></i>
-          </div>
+          
+          <div class="assginment_content_law">
+            <div class="assginment_content_law_year"><p>1-1</p></div>
+            <div class="assginment_content_law_title"><p>문제해결기법</p></div>
+            <div class="assginment_content_law_point"><p>3</p></div>
+            <div class="assginment_content_law_grade">
+              <p>A+</p>
+            </div>
+            <div class="assginment_content_law_major">
+              <i class="fas fa-check-square"></i>
+            </div>
+          </div> -->
         </div>
-        <div class="assginment_content_law">
-          <div class="assginment_content_law_title">
-            <p>기초전기전자회로</p>
-          </div>
-          <div class="assginment_content_law_point"><p>2</p></div>
-          <div class="assginment_content_law_grade">
-            <p>A+</p>
-          </div>
-          <div class="assginment_content_law_major">
-            <i class="fas fa-check-square"></i>
-          </div>
-        </div>
-        <div class="assginment_content_law">
-          <div class="assginment_content_law_title"><p>이산수학</p></div>
-          <div class="assginment_content_law_point"><p>3</p></div>
-          <div class="assginment_content_law_grade">
-            <p>B+</p>
-          </div>
-          <div class="assginment_content_law_major">
-            <div><i class="far fa-check-square"></i></div>
-          </div>
-        </div>
-        <div class="assginment_content_law">
-          <div class="assginment_content_law_title"><p>C프로그래밍</p></div>
-          <div class="assginment_content_law_point"><p>3</p></div>
-          <div class="assginment_content_law_grade">
-            <p>C+</p>
-          </div>
-          <div class="assginment_content_law_major">
-            <div><i class="far fa-check-square"></i></div>
-          </div>
-        </div>
+        
       </div>
+
+      
     </div>
+
   </body>
 </html>

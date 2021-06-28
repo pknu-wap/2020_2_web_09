@@ -4,6 +4,12 @@ const { db } = require("../db");
 const dotenv = require("dotenv");
 dotenv.config();
 
+
+exports.logout = (req, res) => {
+	req.session.destroy();
+	return res.redirect("/");
+}
+
 exports.login = async(req, res) => {
 	try {
 		const {id : email, pwd : password} = req.body;
@@ -23,6 +29,7 @@ exports.login = async(req, res) => {
 			}
 
 			const id = results[0].id;
+			const user = { id , email, password};
 
 			const token = jwt.sign({id}, process.env.JWT_SECRET, {
 				expiresIn : process.env.JWT_EXPIRES_IN
@@ -38,6 +45,8 @@ exports.login = async(req, res) => {
 			}
 
 			res.cookie('jwt', token, cookieOptions);
+			req.session.user = user;
+			req.session.logged = true;
 			res.status(200).redirect('/');
 			
 		})

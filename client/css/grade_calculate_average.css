@@ -1,9 +1,15 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Black Han Sans", sans-serif;
   font-family: "Do Hyeon", sans-serif;
   height: 500vh;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -37,23 +43,50 @@ a {
   color: white;
 }
 
+.average_grade_contatiner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.average_score_board{
+  margin-top: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.grade_form_container{
+  width: 400px;
+}
+.grade_add_form{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.grade_add_form > * {
+  display: flex;
+  flex-direction: column;
+}
 .outline_box {
-  padding: 0% 10%;
+  max-width: 900px;
+  padding: 0% 10px;
 }
 .assginment_title {
   font-size: 35px;
+  width: 100%;
 }
+
 .assginment_order,
 .assginment_content_title,
 .assginment_content_law {
   display: flex;
   font-size: 23px;
+  margin-top: 14px;
 }
-.assginment_order {
-  width: 50%;
-  height: 50%;
-  justify-content: space-between;
-}
+
+
 .assginment_order_box_title {
   display: flex;
   align-items: center;
@@ -72,9 +105,13 @@ a {
   margin: 5px 0px;
 }
 
+.assginment_order_box :hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .assginment_title,
 .assginment_content {
-  width: 50%;
   border-radius: 3px;
   padding: 0px 10px;
 }
@@ -87,21 +124,19 @@ a {
 .assginment_content_title {
   height: 50px;
   align-items: center;
+  margin: 20px 0px;
 }
 
 .assginment_content_law {
   background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-.assginment_content_title,
-.assginment_content_law {
-  justify-content: space-between;
+.assginment_content_title{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-.assginment_content_title_first {
-  padding-right: 15%;
-}
-.assginment_content_title {
-  width: 95%;
-}
+
 .assginment_content_law_title,
 .assginment_content_law_point {
   width: 35%;
