@@ -39,14 +39,14 @@ const getAssignment = async (pknu_id, pknu_pw, cb) => {
     pknu_pw
   );
   await page.click('div[id="login_btn"]');
-
+  await page.waitFor(1000);
   if (page.url() === "https://lms.pknu.ac.kr/ilos/main/member/login_form.acl") {
     console.log("실패");
   } else {
     await page.goto("https://lms.pknu.ac.kr/ilos/main/main_form.acl",
     {waitUntil: 'domcontentloaded'}
     );
-    page.waitFor(1000);
+    await page.waitFor(1000);
     await page.click('div[class="x"]').catch((err) => {
       console.log(err+"site button")
     });

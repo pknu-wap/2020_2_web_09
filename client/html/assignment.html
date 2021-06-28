@@ -18,58 +18,89 @@
   </head>
   <body>
     <nav class="navbar">
-      <i class="fas fa-key"></i>
-      <p>LOGIN</p>
-      <i class="fas fa-sign-in-alt"></i>
-      <p>SIGN UP</p>
+      <a href="/auth/logout">
+        <i class="fas fa-key">
+          <p>LOGOUT</p>
+        </i>
+      </a>
+      <a href="/auth/login">
+        <i class="fas fa-key">
+          <p>LOGIN</p>
+        </i>
+      </a>
+      <a href="/auth/join">
+        <i class="fas fa-sign-in-alt">
+          <p>SIGN UP</p>
+        </i>
+      </a>
+      <a href="/grade/rest">
+        <p>
+          <i class="fas fa-school"></i>
+          잔여학점
+        </p>
+      </a>
+      <a href="/grade/average">
+        <p>
+          <i class="fas fa-book"></i>
+          평균학점
+        </p>
+      </a>
+      <a href="/assign/page">
+        <p>
+          <i class="far fa-calendar-alt"></i>
+          과제
+        </p>
+      </a>
     </nav>
-
+    
     <div class="outline_box">
       <div class="assginment_title">
         <p>과제</p>
       </div>
       <div class="assginment_order">
-        <div class="assginment_order_box_title"><p>정렬</p></div>
         <div class="assginment_order_box"><p>최신순</p></div>
         <div class="assginment_order_box_blank"><p>과목별</p></div>
-
-        <div>
-          <div>
-            <label>
-              id
-            </label>
-            <input class="assign_id" required>
-            <label>
-              password
-            </label>
-            <input class="assign_pw" required>
-            <button class="async_assign_btn">click</button>
-          </div>
-        </div>
-
       </div>
+
+      <div class="assign_get_box">
+        <div>과제 받아오기</div>
+        <div>
+          <label>
+            lms id
+          </label>
+          <input class="assign_id" required>
+          <label>
+            lms password
+          </label>
+          <input class="assign_pw" type="password" required>
+          <button class="async_assign_btn">click</button>
+        </div>
+      </div>
+
+      <div>
+        <div action="" class="assign_add_form">
+          <div>
+            <label>과목명</label>
+            <input class="assign_add_title" required>
+          </div>
+          <div>
+            <label>날짜</label>
+            <input class="assign_add_date" required>
+          </div>
+          <div>
+            <label>내용</label>
+            <textarea class="assign_add_content" required></textarea>
+          </div>
+          <button class="assign_add_btn">추가</button>
+        </div>
+      </div>
+
       <div class="assginment_content">
         <div class="assginment_content_title">
           <p>과목명</p>
           <p>날짜</p>
           <p>내용</p>
           <p>완료</p>
-        </div>
-        <div class="assginment_content_raw">
-          <div class="assginment_content_raw_one"><p>문제해결기법</p></div>
-          <div class="assginment_content_raw_two"><p>3/25</p></div>
-          <div class="assginment_content_raw_content"><p>asdasdasd</p></div>
-          <div class="assginment_content_raw_three">
-            <i class="fas fa-check-square"></i>
-          </div>
-        </div>
-        <div class="assginment_content_raw">
-          <div class="assginment_content_raw_one"><p>문제해결기법</p></div>
-          <div class="assginment_content_raw_two"><p>3/25</p></div>
-          <div class="assginment_content_raw_content"><p>asdasdasd</p></div>
-          <div class="assginment_content_raw_three">
-            <i class="fas fa-check-square"></i>
-          </div>
         </div>
         <!-- <div class="assginment_content_raw">
           <div class="assginment_content_law_one"><p>이산수학</p></div>

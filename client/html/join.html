@@ -24,12 +24,24 @@
       <p><i class="fas fa-sign-in-alt"></i>
         <a href="/auth/join">Sign Up</a></p>
     </nav>
-
-    <form action="/auth/join" method="post">
-      <input type="text" name="name" placeholder="name" required autofocus="">
-      <input type="text" name="email" placeholder="email" required autofocus="">
-      <input type="password" name="password" placeholder="Password" required autofocus="">
-      <input type="password" name="passwordConfirm" placeholder="Comfirm Password" required autofocus="">
-      <button class="btn" type="submit">join</button>
-   </form>
+  <div class="join-form">
+    <h1>Join</h1>
+  <div class="container">
+    <div class="main">
+      <div class="content">
+        <h2>Join</h2>
+        <form action="/auth/join" method="post">
+          <input type="text" name="name" placeholder="name" required autofocus="">
+          <input type="text" name="email" placeholder="email" required autofocus="">
+          <input type="password" name="password" placeholder="Password" required autofocus="">
+          <input type="password" name="passwordConfirm" placeholder="Comfirm Password" required autofocus="">
+          <button class="btn" type="submit">Join</button>
+      </form>
+    </div>
+    <div class="form-img">
+      <img src="../image/join.png">
+    </div>
+  </div>
+  </div>
+  </div>
   </body>

@@ -9,27 +9,16 @@ import { onlyPublic, onlyPrivate } from "../utils/middleware";
 const assignRouter = express.Router();
 
 
-
-assignRouter.get('/page', onlyPrivate, (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../client/html/assignment.html'));
-})
-
-assignRouter.get('/get/:order', onlyPrivate, (req, res)=>{
-    const { id } = req.session.user;
-    const order = req.params.order | '';
-    console.log(req.session)
-    db.query('SELECT * FROM assignment WHERE userid = ?', [id], (err, assigns)=>{
-        return res.json(assigns);
-    })
-})
-
-function saveData(assign) {
+function saveData(assign, userId) {
     const promises = {};
     return new Promise((resolve, reject)=>{
         db.query(
-            "INSERT INTO `assignment` (subjectName, detail, deadline) VALUES (?, ?, CAST(? AS DATE));",
-            [assign.subjectName, assign.content, assign.date],
-            ((err, res, feilds)=>{                
+            "INSERT INTO `assignment` (subjectName, detail, deadline, userId) VALUES (?, ?, CAST(? AS DATETIME) + INTERVAL 1 DAY , ?);",
+            [assign.subjectName, assign.content, assign.date, userId],
+            ((err, res, feilds)=>{            
+                if(err){
+                    return reject(err) 
+                }   
                 promises.id = res.insertId;
                 promises.subjectName = assign.subjectName;
                 promises.content = assign.content
@@ -40,8 +29,29 @@ function saveData(assign) {
     })
 }
 
-assignRouter.post('/async', (req, res)=>{
+
+assignRouter.get('/page', onlyPrivate, (req, res)=>{
+    res.sendFile(path.resolve(__dirname,'../client/html/assignment.html'));
+})
+
+assignRouter.get('/get/:order', onlyPrivate, (req, res)=>{
+    const { id } = req.session.user;
+    const order = req.params.order | '';
+    console.log(req.session)
+    db.query('SELECT * FROM assignment WHERE userId = ?', [id], (err, assigns)=>{
+        if(err){
+            return res.send('404')
+        }
+        console.log(assigns)
+        return res.json(assigns);
+    })
+})
+
+
+assignRouter.post('/async', onlyPrivate,  (req, res)=>{
     const { id : lms_id, pw : lms_pw} = req.body;
+    const userId = req.session.user['id'];
+
     console.log(lms_id, lms_pw)
     getAssignment(lms_id , lms_pw , async function(datas, gettingError){
         if(gettingError) return res.json({success : false, gettingError});
@@ -50,9 +60,12 @@ assignRouter.post('/async', (req, res)=>{
         datas.map(data=>{
             promises.push(
                 new Promise(resolve=>{
-                    saveData(data)
+                    saveData(data, userId)
                     .then(values=>{
                         resolve(values)
+                    })
+                    .catch(err=>{
+                        console.error(err)
                     })
                 })
             )
@@ -65,38 +78,32 @@ assignRouter.post('/async', (req, res)=>{
 })
 
 
-assignRouter.get('/complete', (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../client/html/assignment.html'));
+assignRouter.post('/save', onlyPrivate, (req, res)=>{
+    const assignObj = req.body;
+    console.log(assignObj);
+    if(!assignObj) return res.status(300).send('404')
+
+    const userId = req.session.user['id'];
+    saveData(assignObj, userId)
+    .then(value=>{
+        return res.json(value)
+    })
 })
 
+
+assignRouter.get('/delete/:id', onlyPrivate, (req, res)=>{
+    const id = req.params.id;
+    const userId = req.session.user['id'];
+    db.query('DELETE FROM assignment WHERE id=? and userId=?', [id, userId], (err, result, fields)=>{
+        if(err){
+            console.log(err)
+            return res.send('404')
+        }
+        console.log(result)
+    })
+})
 
 
 export { assignRouter };
 
 
-
-// new Promise((resolve, rej)=>{
-//     for(let i=0; i<datas.length; i++){
-//         let flag = false;
-//         const data = datas[i]
-//         db.query(
-//             "INSERT INTO `assignment` (subjectName, detail, deadline) VALUES (?, ?, CAST(? AS DATE));",
-//             [data.subjectName, data.content, data.date],
-//             ((err, res, feilds)=>{
-//                 datas[i]['id'] = res.insertId
-//                 console.log("1111111")
-//                 console.log(datas)
-//             })
-//         ) 
-
-//         console.log("22222222222")
-//         console.log(datas)
-//     }
-//     console.log("3333333333333")
-//     console.log(datas)
-//     resolve(true)
-// })
-// .then(success=>{
-//     console.log("2")
-//     return res.json(datas)
-// })
