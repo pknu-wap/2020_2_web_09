@@ -82,7 +82,7 @@ a {
 .assginment_content_title,
 .assginment_content_law {
   display: flex;
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 14px;
 }
 
@@ -156,7 +156,7 @@ a {
 }
 
 .assginment_content_title_title {
-  font-size: 25px;
+  font-size: 23px;
   border-radius: 3px;
   padding: 0px 5px;
   width: 25%;
